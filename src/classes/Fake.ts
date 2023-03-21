@@ -8,7 +8,7 @@ class Fake {
   static task(min = 10, max?: number): Task[] {
     return Array.from(
       { length: max ? Ran.minMaxInclusive(min, max) : min },
-      () => new Task(faker.lorem.paragraph())
+      (_, k) => new Task(faker.lorem.paragraph(), k)
     );
   }
 }

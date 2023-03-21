@@ -1,16 +1,17 @@
-import Task from "../../classes/Task";
+import ITask from "../../classes/Task";
+import Task from "./Task";
 
-const TaskGroup = ({ tasks }: { tasks: Task[] }) => {
+const TaskGroup = ({ tasks }: { tasks: ITask[] }) => {
   return (
     <section>
-      {tasks.map((task, i) => (
-        <details key={task.createdAt + i}>
-          <summary>{task.summary}</summary>
-          {task.details}
-        </details>
+      {byPriority(tasks).map((task, i) => (
+        <Task key={task.createdAt + i} task={task} />
       ))}
     </section>
   );
 };
+
+const byPriority = (tasks: ITask[]): ITask[] =>
+  tasks.sort((a, b) => a.priority - b.priority);
 
 export default TaskGroup;
