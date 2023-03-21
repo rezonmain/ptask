@@ -11,10 +11,11 @@ const TaskGroup = ({ tasks }: { tasks: Task[] }) => {
     new Sortable(ref.current, {
       animation: 150,
       ghostClass: "opacity-30",
+      handle: ".as-handle",
     });
   }, [ref]);
   return (
-    <div ref={ref}>
+    <div ref={ref} className="w-full">
       {tasks.map((task) => (
         <RTask key={task.id} task={task} />
       ))}

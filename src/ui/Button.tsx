@@ -7,9 +7,7 @@ interface Base extends ComponentPropsWithoutRef<"button"> {
   children?: ReactNode;
 }
 
-type Conditional = {};
-
-type Props = Base & Conditional;
+type Props = Base;
 
 const Button = forwardRef<HTMLButtonElement, Props>(
   ({ isLoading, children, ...props }, ref) => {
@@ -25,5 +23,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
     );
   }
 );
+
+Button.displayName = "Button";
 
 export default Button;
