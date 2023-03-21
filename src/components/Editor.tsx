@@ -5,7 +5,7 @@ const Editor = () => {
   return (
     <>
       <main className="flex flex-col items-center mx-auto my-0 h-full">
-        <TaskGroup tasks={Fake.task(10, 20)} />
+        <TaskGroup tasks={Fake.task(10)} />
       </main>
     </>
   );

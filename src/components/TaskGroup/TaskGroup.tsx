@@ -1,17 +1,25 @@
-import ITask from "../../classes/Task";
-import Task from "./Task";
+import { useEffect, useRef } from "react";
+import Task from "../../classes/Task";
+import RTask from "./Task";
+import Sortable from "sortablejs";
 
-const TaskGroup = ({ tasks }: { tasks: ITask[] }) => {
+const TaskGroup = ({ tasks }: { tasks: Task[] }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    new Sortable(ref.current, {
+      animation: 150,
+      ghostClass: "opacity-30",
+    });
+  }, [ref]);
   return (
-    <section>
-      {byPriority(tasks).map((task, i) => (
-        <Task key={task.createdAt + i} task={task} />
+    <div ref={ref}>
+      {tasks.map((task) => (
+        <RTask key={task.id} task={task} />
       ))}
-    </section>
+    </div>
   );
 };
-
-const byPriority = (tasks: ITask[]): ITask[] =>
-  tasks.sort((a, b) => a.priority - b.priority);
 
 export default TaskGroup;
