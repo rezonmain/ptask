@@ -1,6 +1,7 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 import ITask from "../../classes/Task";
 import Button from "../../ui/Button";
+import ReactMarkdown from "react-markdown";
 
 interface Props extends ComponentPropsWithoutRef<"div"> {
   task: ITask;
@@ -17,7 +18,9 @@ const Task = forwardRef<HTMLDivElement, Props>(({ task, ...props }, ref) => {
         <summary className="as-handle border border-neutral-700 p-2">
           {task.summary}
         </summary>
-        <div className="border border-neutral-800 p-2">{task.details}</div>
+        <div className="border border-neutral-800 p-2">
+          <ReactMarkdown>{task.details}</ReactMarkdown>
+        </div>
       </details>
       <aside className="hidden sm:flex opacity-0 hover:opacity-100 transition-opacity flex-row flex-nowrap self-start gap-1">
         <Button>Done</Button>
